@@ -42,9 +42,9 @@ validate the luhnId 9813256329
 
 		var result string
 		if luhn.Validate(*code) {
-			result = fmt.Sprintf("Validate code")
+			result = fmt.Sprintf("Valid code")
 		} else {
-			result = fmt.Sprintf("Invalidate code")
+			result = fmt.Sprintf("Invalid code")
 		}
 
 		fmt.Println(result)
