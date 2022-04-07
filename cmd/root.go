@@ -10,10 +10,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const VERSION = "1.0.0"
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "luhnId",
-	Short: "An application for generate luhnId or validate luhnId",
+	Version: VERSION,
+	Use:     "luhnId",
+	Short:   "An application for generate luhnId or validate luhnId",
 	Long: `An application for generate luhnId or validate luhnId
 
 - generate random luhnId with starting prefix and fixed code width
