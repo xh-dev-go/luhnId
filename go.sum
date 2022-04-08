@@ -10,5 +10,7 @@ github.com/spf13/pflag v1.0.5 h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=
 github.com/spf13/pflag v1.0.5/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3An2Bg=
 github.com/xh-dev-go/xhUtils v1.7.17 h1:m3ZgFS+B/ypmOArQXGx1e5Avd5eN3pudEAz3EEpY5CI=
 github.com/xh-dev-go/xhUtils v1.7.17/go.mod h1:/9Plz67S6mZS8EwPMxNBIwBz1dtkcBtwIKHhSNYGazI=
+github.com/xh-dev-go/xhUtils v1.7.18 h1:m9TyF7w6SVvhO9/w53YG5n+FQfGX8ncH1ELuEFUMyQk=
+github.com/xh-dev-go/xhUtils v1.7.18/go.mod h1:qD92I0oK5dLOKXvfIyNBCGJQP6Rt4N9cacynKLHLPFU=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.4.0/go.mod h1:RDklbk79AGWmwhnvt/jBztapEOGDOx6ZbXqjP6csGnQ=

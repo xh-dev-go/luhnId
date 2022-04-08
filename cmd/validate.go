@@ -9,6 +9,8 @@ import (
 	"github.com/atotto/clipboard"
 	"github.com/spf13/cobra"
 	"github.com/xh-dev-go/luhnId/luhn"
+	"github.com/xh-dev-go/xhUtils/cobraUtils/cobraBool"
+	"github.com/xh-dev-go/xhUtils/cobraUtils/cobraString"
 	"unicode"
 )
 
@@ -22,26 +24,26 @@ e.g. "luhnId validate --code 9813256329"
 validate the luhnId 9813256329 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		if *fromClipboard {
+		if fromClipboard.Value() {
 			c, err := clipboard.ReadAll()
 			if err != nil {
 				panic(err)
 			}
-			code = &c
-			fmt.Printf("Read luhnId from %d\n", code)
+			code.SetValue(&c)
+			fmt.Printf("Read luhnId from %s\n", code.Value())
 		}
 
-		if *code == "" {
+		if code.Value() == "" {
 			panic("Please input code to validate")
 		}
-		for _, c := range *code {
+		for _, c := range code.Value() {
 			if !unicode.IsDigit(c) {
 				panic("input code is not all digit")
 			}
 		}
 
 		var result string
-		if luhn.Validate(*code) {
+		if luhn.Validate(code.Value()) {
 			result = fmt.Sprintf("Valid code")
 		} else {
 			result = fmt.Sprintf("Invalid code")
@@ -51,21 +53,11 @@ validate the luhnId 9813256329
 	},
 }
 
-var code *string
-var fromClipboard *bool
+var code *cobraString.CobraString
+var fromClipboard *cobraBool.CobraBool
 
 func init() {
 	rootCmd.AddCommand(validateCmd)
-	code = validateCmd.Flags().String("code", "", "Number of digital for the code (including check digit)")
-	fromClipboard = validateCmd.Flags().Bool("from-clipboard", false, "get the code from clipboard")
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// validateCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// validateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	code = cobraString.NewDefault("code", "Number of digital for the code (including check digit)", "").Bind(validateCmd)
+	fromClipboard = cobraBool.NewDefault("from-clipboard", "get the code from clipboard", false).Bind(validateCmd)
 }

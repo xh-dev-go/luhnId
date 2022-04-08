@@ -1,6 +1,7 @@
 package luhn
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"time"
@@ -50,12 +51,23 @@ func Validate(str string) bool {
 	return getCheckDigit(str[0:len(str)-1]) == checkDigit
 }
 
-func Gen(startWith string, digit int) string {
+var err = errors.New("digit should not be zero or less")
+
+func Gen(startWith string, digit int) (string, error) {
+	var s = ""
+	var d = 0
+	if len(startWith) != 0 {
+		d = digit - 1
+	}
+
+	if d <= 0 {
+		return s, err
+	}
 	rand.Seed(time.Now().UTC().UnixNano())
-	var s = startWith
-	for i := 0; i < digit-1; i++ {
+	s = startWith
+	for i := 0; i < d-1; i++ {
 		s += fmt.Sprintf("%d", rand.Intn(10))
 	}
 	s += fmt.Sprintf("%d", getCheckDigit(s))
-	return s
+	return s, nil
 }
